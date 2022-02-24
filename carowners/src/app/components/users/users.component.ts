@@ -1,8 +1,9 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserInterface } from '../../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './../popup/popup.component';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-users',
@@ -16,11 +17,15 @@ import { PopupComponent } from './../popup/popup.component';
 
 export class UsersComponent implements OnInit {
   public owners: UserInterface[] = [];
-  public displayedColumns = ['Фамилия', 'Имя', 'Отчество', 'Количество автомобилей'];
+  public displayedColumns = ['position', 'surname', 'name', 'father', 'cars'];
   public selected: UserInterface | null = null;
+  dataSource = this.owners;
+
+  @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
   constructor(private userService: UserService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              ) { }
 
   ngOnInit(): void {
     this.getOwners();
@@ -34,29 +39,43 @@ export class UsersComponent implements OnInit {
   }
 
   selectUser(user: UserInterface) {
+    
+    console.log(user)
     this.selected = user;
   }
 
   deletOwner() {
-    this.userService.deleteUser(this.selected!);
-    this.owners = this.owners.filter(el => el.id != this.selected?.id);
+    this.owners = this.owners.filter(el => el.id != this.selected!.id);
     console.log(this.owners)
   }
 
-  create() {
-
+  addOwner(user: UserInterface) {
+    this.owners.push(user);
+    this.table.renderRows();
   }
 
-  openModal() {
+
+  openModal(action: string, obj: any) {
+    obj.action = action;
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '80%',
-
+      data: obj
     });
 
-    dialogRef.afterClosed().subscribe(user => {
-      if (user) {
-        this.owners.push(user)
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        switch (result.action) {
+          case 'add':
+            this.addOwner(result.user)
+            break;
+          case 'update':
+            break;
+          case 'view':
+            break;
+          default:
+          console.log("Что-то не так...");
+        }
       }
-    })
+    });
   }
 }

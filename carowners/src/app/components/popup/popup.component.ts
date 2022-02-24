@@ -17,12 +17,13 @@ export class PopupComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: UserInterface,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               private userService: UserService,
               public dialogRef: MatDialogRef<PopupComponent>) { }
 
   ngOnInit(): void {
-    if (this.data) {
+    console.log(this.data.action)
+    if (this.data.action != 'add') {
       this.owner = this.data;
     }
 
@@ -44,7 +45,12 @@ export class PopupComponent implements OnInit {
       father: this.formGroup.value.father,
       cars: []
     }
-    this.userService.addUser(user).subscribe( user => this.dialogRef.close(user)
+    this.userService.addUser(user).subscribe( res => {
+      let obj = {
+        user: res,
+        action: this.data.action
+      }
+      this.dialogRef.close(obj)}
       );
   }
 
