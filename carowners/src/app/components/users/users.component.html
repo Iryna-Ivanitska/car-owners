@@ -2,8 +2,8 @@
 <div class="btn-container">
   <button type="button" mat-raised-button color="primary" (click)="openModal('add', {})">Добавить</button>
   <div class="btn-right">
-    <button type="button" mat-raised-button color="primary"  [disabled]="!selected" (click)="openModal('view', {})">Просмотреть</button>
-    <button type="button" mat-raised-button color="primary"  [disabled]="!selected" (click)="openModal('update', {})">Редактировать</button>
+    <button type="button" mat-raised-button color="primary"  [disabled]="!selected" (click)="openModal('view', selected)">Просмотреть</button>
+    <button type="button" mat-raised-button color="primary"  [disabled]="!selected" (click)="openModal('update', selected)">Редактировать</button>
     <button type="button" mat-raised-button color="primary" (click)="deletOwner()" [disabled]="!selected">Удалить</button>
   </div>
 </div>
@@ -39,19 +39,3 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selected && selected!.id == row.id}" (click)="selectUser(row)"></tr>
 </table>
 
-<!-- <table class="table" mat-table>
-  <tr>
-    <th>#</th>
-    <th>{{displayedColumns[0]}}</th>
-    <th>{{displayedColumns[1]}}</th>
-    <th>{{displayedColumns[2]}}</th>
-    <th>{{displayedColumns[3]}}</th>
-   </tr>
-   <tr *ngFor="let owner of owners; index as i" (click)="selectUser(owner)">
-    <th scope="row">{{ i + 1 }}</th>
-    <td>{{owner.surname}}</td>
-     <td>{{owner.name}}</td>
-     <td>{{owner.father}}</td>
-     <td>{{owner.cars!.length}}</td>
-    </tr>
-</table> -->

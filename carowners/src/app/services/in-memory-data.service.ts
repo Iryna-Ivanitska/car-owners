@@ -17,7 +17,21 @@ export class InMemoryDataService implements InMemoryDbService{
           surname: 'Ivanov',
           name: 'Ivan',
           father: 'Ivanovych',
-          cars: []
+          cars: [
+            { id: 0,
+              hosnumber:  'AX1111HP',
+              manufacturer: 'Peugeot',
+              model: 'SW 307',
+              year: '2000'
+            },
+            {
+              id: 1,
+              hosnumber:  'AO2222AE',
+              manufacturer: 'Audi',
+              model: 'Q7',
+              year: '1998'
+            }
+          ]
         }
       ]
     }

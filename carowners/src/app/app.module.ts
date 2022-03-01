@@ -13,12 +13,16 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import { CarsComponent } from './components/cars/cars.component';
+import { NewCarComponent } from './components/new-car/new-car.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    PopupComponent
+    PopupComponent,
+    CarsComponent,
+    NewCarComponent
   ],
   imports: [
   InMemoryWebApiModule.forRoot(InMemoryDataService),

@@ -1,9 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { UserInterface } from './../../interfaces/user.interface';
-import { UsersComponent } from './../users/users.component';
 
 @Component({
   selector: 'app-popup',
@@ -22,17 +21,17 @@ export class PopupComponent implements OnInit {
               public dialogRef: MatDialogRef<PopupComponent>) { }
 
   ngOnInit(): void {
-    console.log(this.data.action)
     if (this.data.action != 'add') {
       this.owner = this.data;
     }
-
     this.formGroup = this.fb.group({
       surname: [this.owner?.surname, [Validators.required]],
       name: [this.owner?.name, [Validators.required]],
       father: [this.owner?.father, [Validators.required]]
     });
-    this.userService.getUsers().subscribe(users => this.users = users)
+    if (this.data.action === 'view') {
+      this.formGroup.disable()
+    }
   }
 
   create() {

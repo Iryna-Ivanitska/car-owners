@@ -39,8 +39,7 @@ export class UsersComponent implements OnInit {
   }
 
   selectUser(user: UserInterface) {
-    
-    console.log(user)
+    // console.log(user)
     this.selected = user;
   }
 
