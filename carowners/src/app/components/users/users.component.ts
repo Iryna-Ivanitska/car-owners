@@ -4,6 +4,7 @@ import { UserInterface } from '../../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './../popup/popup.component';
 import { MatTable } from '@angular/material/table';
+import { User } from './../../model/user.model';
 
 @Component({
   selector: 'app-users',
@@ -39,23 +40,32 @@ export class UsersComponent implements OnInit {
   }
 
   selectUser(user: UserInterface) {
-    // console.log(user)
     this.selected = user;
   }
 
   deletOwner() {
     this.owners = this.owners.filter(el => el.id != this.selected!.id);
-    console.log(this.owners)
+    this.userService.deleteUser(this.selected!)
+    this.table.renderRows();
   }
 
-  addOwner(user: UserInterface) {
+  createOwner(user: UserInterface) {
     this.owners.push(user);
+    this.table.renderRows();
+  }
+
+  updateOwner() {
+    this.getOwners();
     this.table.renderRows();
   }
 
 
   openModal(action: string, obj: any) {
+    if (action == 'add') {
+      obj = new User(null, '', '', '');
+    }
     obj.action = action;
+    obj.owners = this.owners;
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '80%',
       data: obj
@@ -65,9 +75,11 @@ export class UsersComponent implements OnInit {
       if (result) {
         switch (result.action) {
           case 'add':
-            this.addOwner(result.user)
+            console.log(result.user)
+            this.createOwner(result.user)
             break;
           case 'update':
+            this.updateOwner();
             break;
           case 'view':
             break;

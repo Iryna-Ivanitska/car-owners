@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { CarsComponent } from './components/cars/cars.component';
 import { NewCarComponent } from './components/new-car/new-car.component';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { NewCarComponent } from './components/new-car/new-car.component';
     NewCarComponent
   ],
   imports: [
-  InMemoryWebApiModule.forRoot(InMemoryDataService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -35,7 +36,8 @@ import { NewCarComponent } from './components/new-car/new-car.component';
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

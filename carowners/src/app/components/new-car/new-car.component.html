@@ -1,19 +1,27 @@
-<form [formGroup]="newCarForm">
-  <div class="car">
-    <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Номер" formControlName="hosnumber" >
-    </mat-form-field>
-    <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Марка" formControlName="manufacturer">
-    </mat-form-field>
-    <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Модель" formControlName="model">
-    </mat-form-field>
-    <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Год" formControlName="year">
-    </mat-form-field>
-  </div>
-</form>
+<div class="wrapper" *ngIf="isNewRow">
+  <form [formGroup]="newCarForm" >
+    <div class="car">
+      <mat-form-field appearance="outline" >
+          <input type="text" matInput placeholder="Номер" formControlName="hosnumber"  >
+          <mat-error>Введите правильный номер автомобиля</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+          <input type="text" matInput placeholder="Марка" formControlName="manufacturer">
+          <mat-error>Введите производителя</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+          <input type="text" matInput placeholder="Модель" formControlName="model">
+          <mat-error>Введите модель автомобиля</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+          <input type="text" matInput placeholder="Год" formControlName="year">
+          <mat-error>Введите год от 1990 до 2022</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <button type="button" mat-stroked-button (click)="addCar()" *ngIf="isNewRow" [disabled]="newCarForm.invalid">Добавить</button>
+</div>
 <mat-dialog-actions>
-  <button type="button" mat-stroked-button (click)="addCar()">Добавить</button>
-</mat-dialog-actions>
+    <button type="button" mat-stroked-button (click)="addRow()" *ngIf="!isNewRow && action != 'view'">+ Добавить автомобиль</button>
+  </mat-dialog-actions>
+

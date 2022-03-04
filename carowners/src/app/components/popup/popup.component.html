@@ -11,15 +11,16 @@
     </mat-form-field>
   </div>
   <H2>Автомобили</H2>
-  <div class="cars-data" *ngIf="data.action != 'add'">
-    <div class="cars-data__item" *ngFor="let car of owner!.cars; index as i" >
-      <app-cars [car]=car [action]=data.action [index]=i></app-cars>
+  <div class="cars-data">
+    <div class="cars-data__item" *ngFor="let car of data.cars; index as i" >
+        <app-cars [car]=car [data]=data [index]=i></app-cars>
     </div>
   </div>
 </form>
 <div class="new-car">
-  <app-new-car [cars] = data.cars></app-new-car>
+  <app-new-car [action]=data.action [data]=data></app-new-car>
 </div>
 <mat-dialog-actions *ngIf="data.action != 'view'">
-  <button type="button" mat-stroked-button (click)="create()">Сохранить</button>
+  <button type="button" mat-stroked-button (click)="create()" *ngIf="data.action == 'add'" [disabled]="formGroup.invalid">Добавить</button>
+  <button type="button" mat-raised-button color="primary" (click)="update()" [disabled]="formGroup.invalid" *ngIf="data.action != 'add'">Сохранить</button>
 </mat-dialog-actions>

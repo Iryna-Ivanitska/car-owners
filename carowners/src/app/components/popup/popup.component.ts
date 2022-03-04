@@ -1,8 +1,10 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { UserInterface } from './../../interfaces/user.interface';
+import { CarInterface } from './../../interfaces/car.interface';
+import { User } from './../../model/user.model';
 
 @Component({
   selector: 'app-popup',
@@ -11,9 +13,7 @@ import { UserInterface } from './../../interfaces/user.interface';
 })
 export class PopupComponent implements OnInit {
   public formGroup: FormGroup | any;
-  public owner: UserInterface | null = null;
-  private users: UserInterface[] = [];
-
+  public owner: User = new User(null, '', '', '');
 
   constructor(private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,15 +36,17 @@ export class PopupComponent implements OnInit {
 
   create() {
     if (this.formGroup.invalid) return;
-
+    if (this.data.cars.length === 0) {
+      alert('Добавте минимум один автомобиль');
+      return;
+    };
     let user = {
-      id: this.users.length > 0 ? Math.max(...this.users.map(user => user.id)) + 1 : 11,
       surname: this.formGroup.value.surname,
       name: this.formGroup.value.name,
       father: this.formGroup.value.father,
-      cars: []
+      cars: this.data.cars
     }
-    this.userService.addUser(user).subscribe( res => {
+    this.userService.addUser(user as User).subscribe( res => {
       let obj = {
         user: res,
         action: this.data.action
@@ -53,4 +55,26 @@ export class PopupComponent implements OnInit {
       );
   }
 
+  update() {
+    if (this.formGroup.invalid) return;
+    if (this.data.cars.length === 0) {
+      alert('Добавте минимум один автомобиль');
+      return;
+    };
+    let user: UserInterface = {
+      id:  this.owner.id,
+      surname: this.formGroup.value.surname,
+      name: this.formGroup.value.name,
+      father: this.formGroup.value.father,
+      cars: this.data.cars
+    }
+    this.userService.updateUser(user).subscribe( _ => {
+      let obj = {
+        user: user,
+        action: this.data.action
+      }
+      this.dialogRef.close(obj)
+    }
+      );
+  }
 }

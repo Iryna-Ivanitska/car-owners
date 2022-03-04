@@ -1,7 +1,7 @@
 import { CarInterface } from './car.interface';
 
 export interface UserInterface {
-  id: number;
+  id: number | null;
   surname: string;
   name: string;
   father: string;
