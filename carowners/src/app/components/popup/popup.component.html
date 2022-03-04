@@ -1,13 +1,16 @@
 <form [formGroup]="formGroup">
   <div class="user-data">
     <mat-form-field appearance="outline" >
-        <input type="text" matInput [value]="owner?.surname" placeholder="Фамилия" formControlName="surname" >
+      <mat-label>Фамилия</mat-label>
+      <input type="text" matInput [value]="owner?.surname" placeholder="Фамилия" formControlName="surname" >
     </mat-form-field>
     <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Имя" formControlName="name">
+      <mat-label>Имя</mat-label>
+      <input type="text" matInput placeholder="Имя" formControlName="name">
     </mat-form-field>
     <mat-form-field appearance="outline" >
-        <input type="text" matInput placeholder="Отчество" formControlName="father">
+      <mat-label>Отчество</mat-label>
+      <input type="text" matInput placeholder="Отчество" formControlName="father">
     </mat-form-field>
   </div>
   <H2>Автомобили</H2>
@@ -21,6 +24,6 @@
   <app-new-car [action]=data.action [data]=data></app-new-car>
 </div>
 <mat-dialog-actions *ngIf="data.action != 'view'">
-  <button type="button" mat-stroked-button (click)="create()" *ngIf="data.action == 'add'" [disabled]="formGroup.invalid">Добавить</button>
+  <button type="button" mat-raised-button color="primary" (click)="create()" *ngIf="data.action == 'add'" [disabled]="formGroup.invalid">Добавить</button>
   <button type="button" mat-raised-button color="primary" (click)="update()" [disabled]="formGroup.invalid" *ngIf="data.action != 'add'">Сохранить</button>
 </mat-dialog-actions>

@@ -1,10 +1,16 @@
-
-
 .car {
   display: flex;
 
   &__input {
-    width: 100%;
     margin-right: 5px;
+
+    input {
+      color: #000;
+    }
   }
 }
+
+::ng-deep .mat-form-field-infix {
+  width: auto !important;
+}
+

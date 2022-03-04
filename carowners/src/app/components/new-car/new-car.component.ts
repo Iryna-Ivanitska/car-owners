@@ -19,7 +19,6 @@ export class NewCarComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.data)
     this.newCarForm = this.fb.group({
       hosnumber: ['', [Validators.required, Validators.pattern('[A-Z]{2}\\d{4}[A-Z]{2}')]],
       manufacturer: ['', [Validators.required]],

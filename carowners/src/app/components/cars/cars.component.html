@@ -1,22 +1,26 @@
 <div formGroupName="carsGroup{{index}}">
   <div class="car">
     <mat-form-field appearance="outline" class="car__input">
-        <input type="text" matInput placeholder="Номер" formControlName="hosnumber">
-        <mat-error>Введите правильный номер автомобиля</mat-error>
+      <mat-label>Номер</mat-label>
+      <input type="text" matInput placeholder="Номер" formControlName="hosnumber">
+      <mat-error>Введите правильный номер автомобиля</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="car__input">
-        <input type="text" matInput placeholder="Марка" formControlName="manufacturer">
-        <mat-error>Введите производителя</mat-error>
+      <mat-label>Марка</mat-label>
+      <input type="text" matInput placeholder="Марка" formControlName="manufacturer">
+      <mat-error>Введите производителя</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="car__input">
-        <input type="text" matInput placeholder="Модель" formControlName="model">
-        <mat-error>Введите модель автомобиля</mat-error>
+      <mat-label>Модель</mat-label>
+      <input type="text" matInput placeholder="Модель" formControlName="model">
+      <mat-error>Введите модель автомобиля</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="car__input">
-        <input type="text" matInput placeholder="Год" formControlName="year">
-        <mat-error>Введите год от 1990 до 2022</mat-error>
+      <mat-label>Год</mat-label>
+      <input type="text" matInput placeholder="Год" formControlName="year">
+      <mat-error>Введите год от 1990 до 2022</mat-error>
     </mat-form-field>
-    <button mat-fab color="primary" class="car__button" (click)="deleteCar(car.id)">
+    <button mat-fab color="primary" class="car__button" *ngIf="data.action != 'view'" (click)="deleteCar(car.id)">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

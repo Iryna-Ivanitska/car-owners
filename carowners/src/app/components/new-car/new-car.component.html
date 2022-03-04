@@ -2,18 +2,22 @@
   <form [formGroup]="newCarForm" >
     <div class="car">
       <mat-form-field appearance="outline" >
+        <mat-label>Номер</mat-label>
           <input type="text" matInput placeholder="Номер" formControlName="hosnumber"  >
           <mat-error>Введите правильный номер автомобиля</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" >
+        <mat-label>Марка</mat-label>
           <input type="text" matInput placeholder="Марка" formControlName="manufacturer">
           <mat-error>Введите производителя</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" >
+        <mat-label>Модель</mat-label>
           <input type="text" matInput placeholder="Модель" formControlName="model">
           <mat-error>Введите модель автомобиля</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" >
+        <mat-label>Год</mat-label>
           <input type="text" matInput placeholder="Год" formControlName="year">
           <mat-error>Введите год от 1990 до 2022</mat-error>
       </mat-form-field>

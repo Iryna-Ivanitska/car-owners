@@ -1,6 +1,17 @@
+.flag {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  background: rgb(11,129,177);
+  background: linear-gradient(180deg, rgba(11,129,177,1) 0%, rgba(11,129,177,1) 50%, rgba(255,218,68,1) 50%, rgba(255,218,68,1) 100%);
+  margin-bottom: 20px;
+}
+
 h1 {
-  text-align: center;
-  margin-bottom: 1.5em;
+  margin: 20px;
+  color: #fff;
+  font-size: 3em;
+  font-weight: bold;
 }
 
 .btn-container {

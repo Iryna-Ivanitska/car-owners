@@ -52,11 +52,13 @@ export class UsersComponent implements OnInit {
   createOwner(user: UserInterface) {
     this.owners.push(user);
     this.table.renderRows();
+    this.selected = null;
   }
 
   updateOwner() {
     this.getOwners();
     this.table.renderRows();
+    this.selected = null;
   }
 
 

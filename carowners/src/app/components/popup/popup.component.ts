@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { UserInterface } from './../../interfaces/user.interface';
-import { CarInterface } from './../../interfaces/car.interface';
 import { User } from './../../model/user.model';
 
 @Component({
